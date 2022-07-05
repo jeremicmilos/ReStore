@@ -19,7 +19,6 @@ import AboutPage from '../../features/about/AboutPage'
 import ContactPage from '../../features/contact/ContactPage'
 import BasketPage from '../../features/basket/BasketPage'
 import LoadingComponent from './LoadingComponent'
-import CheckoutPage from '../../features/checkout/CheckoutPage'
 
 // React toastify
 import 'react-toastify/dist/ReactToastify.css'
@@ -31,6 +30,7 @@ import Login from '../../features/account/Login'
 import { fetchCurrentUser } from '../../features/account/accountSlice'
 import PrivateRoute from './PrivateRoute'
 import Orders from '../../features/orders/Orders'
+import CheckoutWrapper from '../../features/checkout/CheckoutWrapper'
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -81,7 +81,7 @@ const App = () => {
           <Route path='/contact' component={ContactPage} />
           <Route path='/server-error' component={ServerError} />
           <Route path='/basket' component={BasketPage} />
-          <PrivateRoute path='/checkout' component={CheckoutPage} />
+          <PrivateRoute path='/checkout' component={CheckoutWrapper} />
           <PrivateRoute path='/orders' component={Orders} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
