@@ -2,12 +2,13 @@ import { useEffect } from 'react'
 import ProductList from './ProductList'
 import LoadingComponent from '../../app/layout/LoadingComponent'
 import { useAppDispatch, useAppSelector } from '../../app/store/configureStore'
-import { fetchFilters, fetchProductsAsync, prodoctSelectors, setPageNumber, setProductParams } from './catalogSlice'
+import { fetchFilters, fetchProductsAsync, setPageNumber, setProductParams } from './catalogSlice'
 import { Grid, Paper } from '@mui/material'
 import ProductSearch from './ProductSearch'
 import RadioButtonGroup from '../../app/components/RadioButtonGroup'
 import CheckboxButtons from '../../app/components/CheckboxButtons'
-import AddPagination from '../../app/components/AddPagination'
+import AppPagination from '../../app/components/AppPagination'
+import useProducts from '../../app/hooks/useProducts'
 
 const sortOptions = [
   {values: 'name', label: 'Alphabetical'},
@@ -16,8 +17,8 @@ const sortOptions = [
 ]
 
 export default function Catalog() {
-  const products = useAppSelector(prodoctSelectors.selectAll)
-  const {productsLoaded, filtersLoaded, brands, types, productParams, metaData} = useAppSelector(state => state.catalog)
+  const {products, brands, types, filtersLoaded, productsLoaded, metaData} = useProducts();
+  const { productParams } = useAppSelector(state => state.catalog)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -67,7 +68,7 @@ export default function Catalog() {
       <Grid item xs={3} />
       <Grid item xs={9} sx={{mb:2}}>
         {metaData && 
-        <AddPagination 
+        <AppPagination 
           metaData={metaData}
           onPageChange={(page: number) => dispatch(setPageNumber({pageNumber: page}))}
         />}

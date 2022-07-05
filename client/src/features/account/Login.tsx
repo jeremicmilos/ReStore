@@ -26,7 +26,7 @@ export default function Login() {
   async function submitForm(data: FieldValues) {
     try {
       await dispatch(signInUser(data));
-      history.push(location.state.from.pathname || 'catalog');
+      history.push(location.state?.from?.pathname || '/catalog');
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +64,8 @@ export default function Login() {
               error={!!errors.password}
               helperText={errors?.password?.message}
             />
-            <LoadingButton loading={isSubmitting}
+            <LoadingButton 
+              loading={isSubmitting}
               disabled={!isValid}
               type="submit"
               fullWidth
