@@ -21,8 +21,6 @@ interface Props {
 
 const middleLinks = [
   { title: 'catalog', path: '/catalog' },
-  { title: 'about', path: '/about' },
-  { title: 'contact', path: '/contact' },
 ]
 
 const rightLinks = [
@@ -49,7 +47,7 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
 
 
   return (
-    <AppBar position='static' sx={{ mb: 4 }}>
+    <AppBar position='static' >
       <Toolbar
         sx={{
           display: 'flex',

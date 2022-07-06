@@ -1,21 +1,12 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Paper from '@mui/material/Paper';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Box, Button, Paper, Step, StepLabel, Stepper, Typography } from "@mui/material";
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import agent from '../../app/api/agent';
 import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from './checkoutValidation';
-import agent from '../../app/api/agent';
 import { useAppDispatch, useAppSelector } from '../../app/store/configureStore';
 import { clearBasket } from '../basket/basketSlice';
 import { LoadingButton } from '@mui/lab';
@@ -23,8 +14,6 @@ import { StripeElementType } from '@stripe/stripe-js';
 import { CardNumberElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
 const steps = ['Shipping address', 'Review your order', 'Payment details'];
-
-const theme = createTheme();
 
 export default function CheckoutPage() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -94,7 +83,6 @@ export default function CheckoutPage() {
           }
         }
       });
-      console.log(paymentResult);
       if (paymentResult.paymentIntent?.status === 'succeeded') {
           const orderNumber = await agent.Orders.create({saveAddress, shippingAddress});
           setOrderNumber(orderNumber);
@@ -140,9 +128,6 @@ export default function CheckoutPage() {
 
   return (
     <FormProvider {...methods}>
-          <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
             Checkout
@@ -154,7 +139,7 @@ export default function CheckoutPage() {
               </Step>
             ))}
           </Stepper>
-          <>
+          <> 
             {activeStep === steps.length ? (
               <>
                 <Typography variant="h5" gutterBottom>
@@ -196,10 +181,6 @@ export default function CheckoutPage() {
             )}
           </>
         </Paper>
-      </Container>
-    </ThemeProvider>
-    </FormProvider>
-    
-
+    </FormProvider> 
   );
 }

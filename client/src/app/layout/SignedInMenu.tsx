@@ -32,7 +32,6 @@ export default function SignendInMenu() {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem component={Link} to='/orders'>My orders</MenuItem>
         <MenuItem onClick={() => {
           dispatch(signOut());

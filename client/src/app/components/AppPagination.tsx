@@ -28,7 +28,7 @@ export default function AppPaginaton({metaData, onPageChange}: Props) {
               color='secondary'
               size='large'
               count={totalPages}
-              page={currentPage}
+              page={pageNumber}
               onChange={(e, page) => handlePageChange(page)}
             />
         </Box>

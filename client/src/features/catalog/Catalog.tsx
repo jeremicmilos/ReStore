@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
 import ProductList from './ProductList'
 import LoadingComponent from '../../app/layout/LoadingComponent'
 import { useAppDispatch, useAppSelector } from '../../app/store/configureStore'
-import { fetchFilters, fetchProductsAsync, setPageNumber, setProductParams } from './catalogSlice'
+import { setPageNumber, setProductParams } from './catalogSlice'
 import { Grid, Paper } from '@mui/material'
 import ProductSearch from './ProductSearch'
 import RadioButtonGroup from '../../app/components/RadioButtonGroup'
@@ -17,17 +16,17 @@ const sortOptions = [
 ]
 
 export default function Catalog() {
-  const {products, brands, types, filtersLoaded, productsLoaded, metaData} = useProducts();
+  const {products, brands, types, filtersLoaded, metaData} = useProducts();
   const { productParams } = useAppSelector(state => state.catalog)
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (!productsLoaded) dispatch(fetchProductsAsync());
   }, [productsLoaded, dispatch])
 
   useEffect(() => {
     if (!filtersLoaded) dispatch(fetchFilters());
-  }, [dispatch, filtersLoaded])
+  }, [dispatch, filtersLoaded])*/
 
    if (!filtersLoaded) return <LoadingComponent message='Loading products...' />
 

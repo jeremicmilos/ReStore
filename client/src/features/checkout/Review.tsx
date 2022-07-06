@@ -17,7 +17,6 @@ export default function Review() {
               <Grid item xs={6} />
               <Grid item xs={6}>
                   <BasketSummary />
-                  
               </Grid>
           </Grid>
     </>
